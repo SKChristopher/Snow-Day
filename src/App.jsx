@@ -13,6 +13,10 @@ class App extends Component {
       lives: 3,
       score: 0,
       userInput: '',
+      teachersOnField: {
+        bill: 1,
+        thomas: 1,
+      },
     };
   }
 
@@ -26,14 +30,27 @@ class App extends Component {
     if (event.key.length === 1) userInput = userInput.concat(event.key);
     if (userInput.length > 15) userInput = userInput.substr(1);
     this.setState({ userInput });
+    this.checkForDefeatedTeachers();
+  }
+
+  checkForDefeatedTeachers = () => {
+    const { userInput, teachersOnField } = this.state;
+    Object.keys(teachersOnField).forEach((teacher) => {
+      if (userInput.includes(teacher)) {
+        teachersOnField[teacher] = 'defeated';
+      }
+    });
+    this.setState({ teachersOnField });
   }
 
   render() {
-    const { level, lives, score } = this.state;
+    const {
+      level, lives, score, teachersOnField,
+    } = this.state;
     return (
       <div>
         <Databar level={level} lives={lives} score={score} />
-        <Battlefield level={level} />
+        <Battlefield level={level} teachersOnField={teachersOnField} />
       </div>
     );
   }
