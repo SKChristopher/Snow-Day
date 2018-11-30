@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Teacher extends Component {
   constructor(props) {
     super(props);
     this.state = {
       defeated: false,
-      name: 'TeacherNamePlaceholder',
+      imgUrl: 'https://mbtskoudsalg.com/images/cartoon-teacher-png-4.png'
     };
   }
 
-  render() {
-    const { defeated, name } = this.state;
+  componentDidMount = () => {
     // give the Teacher a random look
-    let imgUrl = 'https://mbtskoudsalg.com/images/cartoon-teacher-png-4.png';
-    if (Math.random() >= 0.5) imgUrl = 'http://pluspng.com/img-png/teacher-png-teacher-png-image-512.png';
+    let { imgUrl } = this.state;
+    if (Math.random() >= 0.5) {
+      imgUrl = 'http://pluspng.com/img-png/teacher-png-teacher-png-image-512.png';
+      this.setState({ imgUrl });
+    }
+  }
+
+  render() {
+    const { defeated, imgUrl } = this.state;
+    const { name } = this.props;
 
     if (!defeated) {
       return (
@@ -26,5 +34,9 @@ class Teacher extends Component {
     return null;
   }
 }
+
+Teacher.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default Teacher;
