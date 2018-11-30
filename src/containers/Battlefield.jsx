@@ -1,12 +1,16 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 
 import Teacher from './Teacher.jsx';
 
 class Battlefield extends Component {
   render() {
-    const { level } = this.props;
+    const { level, teachersOnField } = this.props;
+    const teachersToDeploy = Object.keys(teachersOnField);
     const teachersToInvade = [];
-    for (let i = 0; i < level; i += 1) teachersToInvade.push(<Teacher key={`Teacher${i}`}/>);
+    teachersToDeploy.forEach((teacher, i) => {
+      if (teachersOnField[teacher] !== 'defeated') teachersToInvade.push(<Teacher key={`Teacher${i}`} name={teacher} />);
+    });
     return(
       <div id='battlefield-container'>
         {teachersToInvade}
