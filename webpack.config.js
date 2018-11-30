@@ -19,6 +19,9 @@ module.exports = {
     ],
   },
   devServer: {
+    proxy: {
+      '*': 'http://localhost:3000',
+    },
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
