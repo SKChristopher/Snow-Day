@@ -12,18 +12,31 @@ class App extends Component {
       level: 1,
       lives: 3,
       score: 0,
+      userInput: '',
     };
+  }
+
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = (event) => {
+    // update this.state.userInput to be the last 15 characters typed
+    let { userInput } = this.state;
+    if (event.key.length === 1) userInput = userInput.concat(event.key);
+    if (userInput.length > 15) userInput = userInput.substr(1);
+    this.setState({ userInput });
   }
 
   render() {
     const { level, lives, score } = this.state;
-    return(
+    return (
       <div>
         <Databar level={level} lives={lives} score={score} />
         <Battlefield level={level} />
       </div>
     );
   }
-};
+}
 
 export default App;

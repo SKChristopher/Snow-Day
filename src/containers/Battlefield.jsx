@@ -6,7 +6,7 @@ class Battlefield extends Component {
   render() {
     const { level } = this.props;
     const teachersToInvade = [];
-    for (let i = 0; i < level; i += 1) teachersToInvade.push(<Teacher />);
+    for (let i = 0; i < level; i += 1) teachersToInvade.push(<Teacher key={`Teacher${i}`}/>);
     return(
       <div id='battlefield-container'>
         {teachersToInvade}

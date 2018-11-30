@@ -5,19 +5,26 @@ class Teacher extends Component {
     super(props);
     this.state = {
       defeated: false,
+      name: 'TeacherNamePlaceholder',
     };
   }
+
   render() {
+    const { defeated, name } = this.state;
     // give the Teacher a random look
     let imgUrl = 'https://mbtskoudsalg.com/images/cartoon-teacher-png-4.png';
     if (Math.random() >= 0.5) imgUrl = 'http://pluspng.com/img-png/teacher-png-teacher-png-image-512.png';
 
-    return(
-      <div className='teacher-container'>
-        <img src={imgUrl}></img>
-      </div>
-    );
+    if (!defeated) {
+      return (
+        <div className="teacher-container">
+          <img alt="Teacher" src={imgUrl} />
+          <p>{name}</p>
+        </div>
+      );
+    }
+    return null;
   }
-};
+}
 
 export default Teacher;
