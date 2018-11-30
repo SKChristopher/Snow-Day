@@ -5,15 +5,15 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude:  /node_modules/,
-        use: "babel-loader",
+        exclude: /node_modules/,
+        use: 'babel-loader',
       },
       {
         test: /\.scss$/,
         use: [
-            "style-loader",
-            "css-loader",
-            "sass-loader",
+          'style-loader',
+          'css-loader',
+          'sass-loader',
         ],
       },
     ],
@@ -21,6 +21,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
-  }
+    port: 9000,
+  },
 };
