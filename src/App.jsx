@@ -16,6 +16,7 @@ class App extends Component {
       teachersOnField: {
         bill: 1,
         Thomas: 1,
+        'Miss. Howard': 1,
       },
     };
   }
@@ -37,10 +38,18 @@ class App extends Component {
     const { userInput, teachersOnField } = this.state;
     Object.keys(teachersOnField).forEach((teacher) => {
       if (userInput.includes(teacher)) {
+        // defeat teacher and add to score
+        // this.updateScore(teacher.length); // TODO: fix score, when should it update? How?
         teachersOnField[teacher] = 'defeated';
       }
     });
     this.setState({ teachersOnField });
+  }
+
+  updateScore = (num) => {
+    let { score } = this.state;
+    score += num;
+    this.setState({ score });
   }
 
   render() {
