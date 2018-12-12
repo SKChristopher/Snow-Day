@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 describe('<Teacher />', () => {
   let wrapper;
   it('has the correct name.', () => {
-    wrapper = shallow(<Teacher name={'Mr. Tim'} />);
+    wrapper = shallow(<Teacher name="Mr. Tim" />);
     expect(wrapper.text()).toEqual('Mr. Tim');
   });
 });
