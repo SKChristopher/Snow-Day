@@ -3,14 +3,22 @@ body {
 }
 
 #battlefield-container {
-  background-color: darkgray;
   position: absolute;
   width: 100%;
+  min-width: 1000px;
   height: 100%;
 }
 
 .teacher-container {
+  position: absolute;
   img {
     width: 100px;
   }
+}
+
+.databar-container {
+  z-index: 1000;
+  background-color: darkgray;
+  position: fixed;
+  width: 100%;
 }
