@@ -37,9 +37,9 @@ class App extends Component {
   checkForDefeatedTeachers = () => {
     const { userInput, teachersOnField } = this.state;
     Object.keys(teachersOnField).forEach((teacher) => {
-      if (userInput.includes(teacher)) {
+      if (userInput.includes(teacher) && teachersOnField[teacher] !== 'defeated') {
         // defeat teacher and add to score
-        // this.updateScore(teacher.length); // TODO: fix score, when should it update? How?
+        this.updateScore(teacher.length);
         teachersOnField[teacher] = 'defeated';
       }
     });
