@@ -29,10 +29,12 @@ class Teacher extends Component {
   // TODO: add some sort of speed value to determine how quickly a teacher should move down the screen
   // i'm not happy with this method.
   moveDown = () => {
+    const { loseLife, name } = this.props;
     let { position } = this.state;
     const that = this;
     function frame() {
       if (position >= 650) { // 650 needs to be fixed to consider screen-size
+        loseLife(name);
         return clearInterval(id);
       }
       if (Math.random() > 0.5) {
@@ -50,7 +52,7 @@ class Teacher extends Component {
     const { name } = this.props;
     // const randomTopLocation = Math.random() * 100 + '%';
 
-    // this defeated check is pointless
+    // i think this defeated check is pointless
     if (!defeated) {
       return (
         <div className="teacher-container" style={{ left: randomTopLocation, top: position }}>
@@ -64,6 +66,7 @@ class Teacher extends Component {
 }
 
 Teacher.propTypes = {
+  loseLife: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 
