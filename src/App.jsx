@@ -9,15 +9,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
       level: 1,
       lives: 3,
       score: 0,
+
       userInput: '',
+
       teachersOnField: {
         bill: 1,
         Thomas: 1,
         'Miss. Howard': 1,
       },
+
     };
   }
 
