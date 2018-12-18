@@ -5,7 +5,7 @@ class Teacher extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      defeated: false,
+      defeated: false, // this should be unused, teachers defeat status is not checked here.
       imgUrl: 'https://mbtskoudsalg.com/images/cartoon-teacher-png-4.png',
       // could probably consolidate randomTopLocation and position
       randomTopLocation: 0,
@@ -26,14 +26,17 @@ class Teacher extends Component {
     this.setState({ imgUrl, randomTopLocation });
   }
 
+  // TODO: add some sort of speed value to determine how quickly a teacher should move down the screen
+  // i'm not happy with this method.
   moveDown = () => {
     let { position } = this.state;
     const that = this;
     function frame() {
-      if (position === 650) {
-        clearInterval(id);
-      } else {
-        position += 1; 
+      if (position >= 650) { // 650 needs to be fixed to consider screen-size
+        return clearInterval(id);
+      }
+      if (Math.random() > 0.5) {
+        position += Math.random() * 2;
         that.setState({ position });
       }
     }
@@ -41,10 +44,13 @@ class Teacher extends Component {
   }
 
   render() {
-    const { defeated, imgUrl, randomTopLocation, position } = this.state;
+    const {
+      defeated, imgUrl, randomTopLocation, position,
+    } = this.state;
     const { name } = this.props;
     // const randomTopLocation = Math.random() * 100 + '%';
 
+    // this defeated check is pointless
     if (!defeated) {
       return (
         <div className="teacher-container" style={{ left: randomTopLocation, top: position }}>
