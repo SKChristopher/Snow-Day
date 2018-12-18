@@ -1,3 +1,6 @@
+$primary-color: lightblue;
+$secondary-color: blue;
+
 body {
   margin: 0;
 }
@@ -14,11 +17,14 @@ body {
   img {
     width: 100px;
   }
+  p {
+    text-align: center;
+  }
 }
 
 .databar-container {
   z-index: 1000;
-  background-color: darkgray;
   position: fixed;
   width: 100%;
+  border-bottom: 1px solid black;
 }
